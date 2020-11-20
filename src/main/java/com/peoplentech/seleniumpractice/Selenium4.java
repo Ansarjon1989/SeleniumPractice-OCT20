@@ -1,5 +1,6 @@
 package com.peoplentech.seleniumpractice;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptException;
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,7 +11,13 @@ import org.testng.annotations.Test;
 
 public class Selenium4 extends TestBase {
 
-    @Test  // Drag and Drop ni Test qilish yo'li. Masalan : http://demo.guru99.com/test/drag_drop.html
+    // Logger objectni yasashdan maqsad, System.out.println(); joyiga ishlatiladi. U soat  va detaillari bilan hamma infoni chiqorib beradi.
+    // Masalan : 2020-11-20 07:56:25 main INFO  Selenium4:234 - Do you really want to delete this Customer?
+    //           2020-11-20 07:56:27 main INFO  Selenium4:240 - Customer Successfully Delete!
+    private static Logger LOGGER = Logger.getLogger(Selenium4.class);
+
+    @Test
+    // Drag and Drop ni Test qilish yo'li. Masalan : http://demo.guru99.com/test/drag_drop.html
     public static void validateDrugAndDrop() {
 
         setupDriver("chrome");
@@ -226,13 +233,13 @@ public class Selenium4 extends TestBase {
         driver.findElement(By.xpath(" //input[@name=\"submit\"]")).click();
 
         String popup1 = driver.switchTo().alert().getText();
-        System.out.println(popup1);
+        LOGGER.info(popup1);
 
         driver.switchTo().alert().accept();
         sleepFor(2);
 
         String popup2 = driver.switchTo().alert().getText();
-        System.out.println(popup2);
+        LOGGER.info(popup2);
 
         driver.switchTo().alert().accept();
 
